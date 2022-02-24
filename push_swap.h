@@ -6,7 +6,7 @@
 /*   By: anisiaklimenko <anisiaklimenko@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:37:16 by anisiaklime       #+#    #+#             */
-/*   Updated: 2022/01/08 14:16:57 by anisiaklime      ###   ########.fr       */
+/*   Updated: 2022/02/23 19:38:48 by anisiaklime      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stacklast(t_stack *lst);
 int		ft_stacklen(t_stack *a);
 t_stack	*ft_stackmin(t_stack *a);
+void	ft_free_stack(t_stack *a);
 
 void	p(t_stack **a, t_stack **b, char name);
 void	s(t_stack **a, char name);

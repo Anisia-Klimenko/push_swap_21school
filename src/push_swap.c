@@ -6,7 +6,7 @@
 /*   By: anisiaklimenko <anisiaklimenko@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 14:46:38 by anisiaklime       #+#    #+#             */
-/*   Updated: 2022/01/08 14:17:27 by anisiaklime      ###   ########.fr       */
+/*   Updated: 2022/02/23 19:39:13 by anisiaklime      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	check_if_not_sorted(int argc, char **argv)
 	find_min(&min, &index, argc, argv);
 	i = index;
 	tmp = malloc(sizeof(int) * (argc));
+	if (!tmp)
+		return (0);
 	while (i < argc)
 	{
 		tmp[i - index] = ft_atoi(argv[i]);
@@ -94,4 +96,5 @@ void	push_swap(int argc, char **argv)
 	if (check_if_not_sorted(argc, argv))
 		a = sort(a, b, argc);
 	final_sort(&a);
+	ft_free_stack(a);
 }
