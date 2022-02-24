@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions2.c                                    :+:      :+:    :+:   */
+/*   instructions2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anisiaklimenko <anisiaklimenko@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:56:21 by anisiaklime       #+#    #+#             */
-/*   Updated: 2022/01/08 12:54:04 by anisiaklime      ###   ########.fr       */
+/*   Updated: 2022/02/24 13:15:04 by anisiaklime      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
-void	s(t_stack **a, char name)
+void	s(t_stack **a)
 {
 	t_stack	*tmp;
 
@@ -22,53 +22,39 @@ void	s(t_stack **a, char name)
 	(*a) = (*a)->next;
 	tmp->next = (*a)->next;
 	(*a)->next = tmp;
-	write(1, "s", 1);
-	write(1, &name, 1);
-	write(1, "\n", 1);
 }
 
-void	rotate_async(t_stack **a, t_stack **b, char first, t_stack *tmp)
-{
-	int		i;
-	int		na;
-	int		nb;
-	char	second;
-
-	i = 0;
-	second = 'a';
-	if (first == 'a')
-	{
-		na = tmp->score_a;
-		nb = tmp->rscore_b;
-		second = 'b';
-	}
-	else
-	{
-		na = tmp->score_b;
-		nb = tmp->rscore_a;
-	}
-	while (i++ < na)
-		r(a, first);
-	i = 0;
-	while (i++ < nb)
-		rr(b, second);
-}
-
-void	final_sort(t_stack **a)
+void	ss(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	tmp = ft_stackmin(*a);
-	if (ft_stacklen(tmp) * 2 < ft_stacklen(*a))
+	if ((*a) && (*a)->next)
 	{
-		while ((*a)->value != tmp->value)
-			rr(a, 'a');
+		tmp = (*a);
+		(*a) = (*a)->next;
+		tmp->next = (*a)->next;
+		(*a)->next = tmp;
 	}
-	else
+	if ((*b) && (*b)->next)
 	{
-		while ((*a)->value != tmp->value)
-			r(a, 'a');
+		tmp = (*b);
+		(*b) = (*b)->next;
+		tmp->next = (*b)->next;
+		(*b)->next = tmp;
 	}
+}
+
+int	check_sort(t_stack *a, t_stack *b)
+{
+	if (b)
+		return (0);
+	while (a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 void	free_mass(int size, char **mas)
@@ -85,6 +71,9 @@ void	free_mass(int size, char **mas)
 
 void	warning(int code, char *mess)
 {
-	write(1, mess, ft_strlen(mess));
+	if (code == 1)
+		write(2, mess, ft_strlen(mess));
+	if (code == 0)
+		write(1, mess, ft_strlen(mess));
 	exit(code);
 }

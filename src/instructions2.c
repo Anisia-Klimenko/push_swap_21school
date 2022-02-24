@@ -6,7 +6,7 @@
 /*   By: anisiaklimenko <anisiaklimenko@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 19:56:21 by anisiaklime       #+#    #+#             */
-/*   Updated: 2022/01/08 12:54:04 by anisiaklime      ###   ########.fr       */
+/*   Updated: 2022/02/24 11:42:21 by anisiaklime      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ void	free_mass(int size, char **mas)
 
 void	warning(int code, char *mess)
 {
-	write(1, mess, ft_strlen(mess));
+	if (code == 1)
+		write(2, mess, ft_strlen(mess));
+	if (code == 0)
+		write(1, mess, ft_strlen(mess));
 	exit(code);
 }
